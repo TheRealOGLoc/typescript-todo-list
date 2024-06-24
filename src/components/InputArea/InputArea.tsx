@@ -8,9 +8,11 @@ export default function InputArea({setTodos}: todoListProps) {
 
     const [todoInput, setTodoInput] = useState<string>("")
 
-    const addToList = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        setTodos(prev => [...prev, todoInput])
+        if (todoInput !== "") {
+            setTodos(prev => [...prev, todoInput])
+        }
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +21,7 @@ export default function InputArea({setTodos}: todoListProps) {
 
     return (
         <div>
-            <form onSubmit={addToList} >
+            <form onSubmit={handleSubmit} >
                 <input type="text" onChange={handleChange} />
                 <input type="submit" value="Add todo" />
             </form>
